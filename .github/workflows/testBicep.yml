@@ -12,6 +12,7 @@
         - name: Checkout the repo
           uses: actions/checkout@v2
     
+        # No need for an action
         - name: Azure Bicep Build
           run: |
           az bicep build --file ./main.bicep
