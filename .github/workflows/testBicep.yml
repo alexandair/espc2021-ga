@@ -15,13 +15,13 @@
         # No need for an action
         - name: Azure Bicep Build
           run: |
-          az bicep build --file ./main.bicep
+          az bicep build --file './main.bicep'
     
         - name: Run ARM TTK
-        uses: aliencube/arm-ttk-actions@v0.3
-        id: armtest
-        with:
-          path: ./
+          uses: aliencube/arm-ttk-actions@v0.3
+          id: armtest
+          with:
+            path: ./
     
         - name: Show ARM TTK test result
           shell: bash
