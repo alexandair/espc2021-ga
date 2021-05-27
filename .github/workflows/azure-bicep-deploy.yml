@@ -14,7 +14,8 @@ jobs:
     env:
       ResourceGroupName: espc2021-ga-rg
       ResourceGroupLocation: westeurope
-
+    environment: production
+    
     steps:
 
     - uses: actions/checkout@v2
