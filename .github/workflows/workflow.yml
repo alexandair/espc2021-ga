@@ -1,4 +1,4 @@
-name: workflow to deploy an ARM Template to a Subscription Scope
+name: Workflow to deploy an ARM template to a subscription scope
 on: push
 
 # CONFIGURATION
