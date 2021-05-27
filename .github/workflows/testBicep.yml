@@ -18,10 +18,10 @@
           az bicep build --file ./main.bicep
     
         - name: Run ARM TTK
-          uses: aliencube/arm-ttk-actions@v0.3
-          id: armtest
-          with:
-            path: ./main.json
+        uses: aliencube/arm-ttk-actions@v0.3
+        id: armtest
+        with:
+          path: ./
     
         - name: Show ARM TTK test result
           shell: bash
