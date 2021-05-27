@@ -1,0 +1,44 @@
+name: 'AzureBicepDeploy'
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+
+jobs:
+
+  AzureBicepDeploy:
+    name: 'AzureBicepDeploy'
+    runs-on: ubuntu-latest
+    env:
+      ResourceGroupName: espc2021-ga-rg
+      ResourceGroupLocation: westeurope
+
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Azure Bicep Build
+      run: |
+        az bicep build --file ./main.bicep
+
+    - name: Az CLI Create Resource Group
+      uses: Azure/CLI@v1
+      with:
+        inlineScript: |
+          #!/bin/bash
+          az group create --name ${{ env.ResourceGroupName }} --location ${{ env.ResourceGroupLocation }}
+
+    - name: Deploy Azure Bicep
+      uses: Azure/arm-deploy@v1
+      with:
+        resourceGroupName: ${{ env.ResourceGroupName }}
+        subscriptionId: ${{ secrets.AZURE_CREDENTIALS.subscriptionId }}
+        template: ./main.json
+
+
